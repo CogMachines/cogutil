@@ -44,9 +44,9 @@ IF (WIN32) # Windows host but not cygwin
 	# ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE)
 ENDIF (WIN32)
 
-IF (NOT CMAKE_COMPILER_IS_GNUCXX) # Compiler is not gcc
-	MESSAGE(FATAL_ERROR "Only the gcc compiler is supported at this time")
-ENDIF (NOT CMAKE_COMPILER_IS_GNUCXX)
+#IF (NOT CMAKE_COMPILER_IS_GNUCXX) # Compiler is not gcc
+#	MESSAGE(FATAL_ERROR "Only the gcc compiler is supported at this time")
+#ENDIF (NOT CMAKE_COMPILER_IS_GNUCXX)
 
 # uncomment to be in Release mode [default]
 # SET(CMAKE_BUILD_TYPE Release)
@@ -79,7 +79,7 @@ SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/lib/")
 # ===============================================================
 # Detect different compilers and OS'es, tweak flags as necessary.
 
-IF (CMAKE_COMPILER_IS_GNUCXX)  # Compiler is GCC
+#IF (CMAKE_COMPILER_IS_GNUCXX)  # Compiler is GCC
 	# aiiee cmake version 2.8.8 or newer is needed for below to
 	# work...
 	# IF (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.6.4)
@@ -122,7 +122,7 @@ IF (CMAKE_COMPILER_IS_GNUCXX)  # Compiler is GCC
 	IF (CMAKE_BUILD_TYPE STREQUAL "Coverage")
 		LINK_LIBRARIES(gcov)
 	ENDIF (CMAKE_BUILD_TYPE STREQUAL "Coverage")
-ENDIF (CMAKE_COMPILER_IS_GNUCXX)
+#ENDIF (CMAKE_COMPILER_IS_GNUCXX)
 
 
 # Do the cygwin build

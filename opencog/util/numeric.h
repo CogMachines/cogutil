@@ -48,6 +48,8 @@
 
 #ifdef WIN32
 #include <numeric>
+#elif __APPLE__
+#include <numeric>
 #else
 #include <ext/numeric>
 #endif
@@ -63,10 +65,12 @@ using std::isinf;
 using std::iota;
 
 #ifndef WIN32
+#ifndef __APPLE__
 // This needs to be changed for non-gcc. Note however that so far it
 // has been useless as most of the time you just need pow2 or sq
 // defined below in that header
 using __gnu_cxx::power;
+#endif
 #endif
 
 const double EPSILON = 1e-6; // default error when comparing 2 floats

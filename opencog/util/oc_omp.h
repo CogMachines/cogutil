@@ -45,7 +45,7 @@
 
 //! compile with multithread support (!)
 #ifndef CYGWIN
-#define OC_OMP
+//#define OC_OMP
 #endif
 
 #ifdef OC_OMP

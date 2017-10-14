@@ -30,6 +30,7 @@
 
 #include <iterator>
 #include <functional>
+#include <string>
 
 #ifndef WIN32
 #include <cxxabi.h>
@@ -49,21 +50,26 @@ unsigned int bitcount(unsigned long n);
 template <typename _OutputIterator>
 void tokenize(const std::string& str,
               _OutputIterator tokens,
-              const std::string& delimiters = " ")
+              const std::string& delimiters)
 {
 
+    auto theDelimeters = delimiters;
+    if (theDelimeters.empty()) {
+        theDelimeters = " ";
+    }
+    
     // skip delimiters at beginning.
-    std::string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+    std::string::size_type lastPos = str.find_first_not_of(theDelimeters, 0);
     // find first "non-delimiter".
-    std::string::size_type pos     = str.find_first_of(delimiters, lastPos);
+    std::string::size_type pos     = str.find_first_of(theDelimeters, lastPos);
 
     while (std::string::npos != pos || std::string::npos != lastPos) {
         // found a token, add it to the vector.
         *(tokens++) = str.substr(lastPos, pos - lastPos);
         // skip delimiters.  Note the "not_of"
-        lastPos = str.find_first_not_of(delimiters, pos);
+        lastPos = str.find_first_not_of(theDelimeters, pos);
         // find next "non-delimiter"
-        pos = str.find_first_of(delimiters, lastPos);
+        pos = str.find_first_of(theDelimeters, lastPos);
     }
 }
 
