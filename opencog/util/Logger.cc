@@ -419,7 +419,7 @@ void Logger::log(Logger::Level level, const std::string &txt)
         gmtime_r(&t, &stm);
         strftime(timestamp, sizeof(timestamp), "%F %T", &stm);
         snprintf(timestampStr, sizeof(timestampStr),
-                "[%s:%03ld] ",timestamp, stv.tv_usec / 1000);
+                "[%s:%03d] ",timestamp, stv.tv_usec / 1000);
         oss << timestampStr;
     }
 
@@ -504,7 +504,7 @@ void Logger::Info::operator()(const char *fmt, ...)
 
 void Logger::Debug::operator()(const char *fmt, ...)
 {
-    va_list args; va_start(args, fmt); logger.logva(DEBUG, fmt, args); va_end(args);
+    va_list args; va_start(args, fmt); logger.logva(DEBUGGER, fmt, args); va_end(args);
 }
 
 void Logger::Fine::operator()(const char *fmt, ...)

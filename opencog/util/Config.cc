@@ -101,7 +101,7 @@ static const char* DEFAULT_CONFIG_PATHS[] =
     "../../lib/",
     "../../../lib/",
     "../../../../lib/", // yes, really needed for some test cases!
-    CONFDIR,
+    //CONFDIR,
 #ifndef WIN32
     "/etc/opencog",
     "/etc",
@@ -215,7 +215,7 @@ void Config::load(const char* filename, bool resetFirst)
     bool have_value = false;
 
     // Read and parse the config file.
-    while (++line_number, fin.good() and getline(fin, line))
+    while (static_cast<void>(++line_number), fin.good() and getline(fin, line))
     {
         string::size_type idx;
 

@@ -50,7 +50,7 @@ public:
 
     // WARNING: if you change the levels don't forget to update
     // levelStrings[] in Logger.cc
-    enum Level { NONE, ERROR, WARN, INFO, DEBUG, FINE, BAD_LEVEL=255 };
+    enum Level { NONE, ERROR, WARN, INFO, DEBUGGER, FINE, BAD_LEVEL=255 };
 
     /**
      * Convert from string to enum (ignoring case), and vice-versa.
@@ -256,12 +256,12 @@ public:
     class Debug : public Base
     {
     public:
-        void operator()(const std::string &txt) { logger.log(DEBUG, txt); }
+        void operator()(const std::string &txt) { logger.log(DEBUGGER, txt); }
         void operator()(const char *, ...);
         Base operator()() { return *this; }
     protected:
         friend class Logger;
-        Debug(Logger& l) : Base(l, DEBUG) {}
+        Debug(Logger& l) : Base(l, DEBUGGER) {}
     };
     Debug debug;
 

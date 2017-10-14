@@ -172,6 +172,9 @@ unsigned long long opencog::atoll(const char *str)
 #include <unistd.h>   // for sbrk(), sysconf()
 #include "platform.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 // Return memory usage per sbrk system call.
 size_t opencog::getMemUsage()
 {
@@ -185,6 +188,7 @@ size_t opencog::getMemUsage()
     size_t diff = (size_t)p - (size_t)old_sbrk;
     return diff;
 }
+#pragma clang diagnostic pop
 
 #ifdef __APPLE__
 #include <sys/sysctl.h>
